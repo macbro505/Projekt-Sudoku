@@ -184,7 +184,7 @@ int solving_sudoku(int size, int sudoku[][9]) {
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 9; j++) {
 			testvalue = 1;
-			do {
+			do {////////////
 				change = false;
 				if (gettingback == true) {
 					j = j - 1;
@@ -212,7 +212,7 @@ int solving_sudoku(int size, int sudoku[][9]) {
 							change = true;
 						}
 					}
-				}
+				}/////////
 				if (workingspace[i][j] == 0 && gettingback == false) {
 					checking_values(9, workingspace, change, testvalue, i, j);
 					if (change == false)
