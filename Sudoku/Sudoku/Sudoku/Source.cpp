@@ -37,7 +37,8 @@ int getting_data(int size, int sudoku[][9]) {
 	bool check_value = false;
 	std::string decision;
 	int check_coords = 0;
-	int value = 0;
+	int value=0;
+	std::string gotten_value;
 	int letter;
 	int number;
 	do {
@@ -68,9 +69,10 @@ int getting_data(int size, int sudoku[][9]) {
 			duplicate = false;
 			check_value = false;
 			std::cout << "Wpisz wartosc komorki, lub wpisz 0 jesli chcesz wykasowac zawartosc komorki, zatwierdz, kikajac enter" << std::endl;
-			std::cin >> value;
-			if (value >= 0 && value <= 9) {
+			std::cin >> gotten_value;
+			if (gotten_value[0] >= '0' && gotten_value[0] <= '9') {
 				check_value = true;
+				value = gotten_value[0] - '0';
 			}
 			else {
 				std::cout << "Wpisz wartosc od 1 do 9, lub 0 jesli chcesz wykasowac wartosc" << std::endl;
