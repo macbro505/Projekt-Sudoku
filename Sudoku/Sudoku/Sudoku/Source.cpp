@@ -163,6 +163,7 @@ int checking_values(int size, int table[][9], bool &duplicate, int value, int le
 			}
 		}
 	}
+	if (value == 0) duplicate = false;
 	return 0;
 }
 int transfer_data_from_tab_to_tab(int size, int tab1[][9], int tab2[][9]) {
