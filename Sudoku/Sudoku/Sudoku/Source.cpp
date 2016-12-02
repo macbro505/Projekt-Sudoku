@@ -94,67 +94,67 @@ int getting_data(int size, int sudoku[][9]) {
 }
 int checking_values(int size, int table[][9], bool &duplicate, int value, int letter, int number) {
 	for (int h = 0; h < 9; h++) {
-		if (table[h][number] == value) duplicate = true;				//KOLUMNA
+		if (table[h][number] == value) duplicate = true;								//KOLUMNA
 	}
 	for (int h = 0; h < 9; h++) {
-		if (table[letter][h] == value) duplicate = true;				//WIERSZ
+		if (table[letter][h] == value) duplicate = true;								//WIERSZ
 	}
-	if (letter < 3 && number < 3) {												//1 KWADRACIK
+	if (letter < 3 && number < 3) {														//1 KWADRACIK
 		for (int n = 0; n < 3; n++) {
 			for (int m = 0; m < 3; m++) {
 				if (table[n][m] == value) duplicate = true;
 			}
 		}
 	}
-	if (letter< 3 && number < 6 && number>2) {												//2 KWADRACIK
+	if (letter< 3 && number < 6 && number>2) {											//2 KWADRACIK
 		for (int n = 0; n < 3; n++) {
 			for (int m = 3; m < 6; m++) {
 				if (table[n][m] == value) duplicate = true;
 			}
 		}
 	}
-	if (letter< 3 && number < 9 && number>5) {												//3 KWADRACIK
+	if (letter< 3 && number < 9 && number>5) {											//3 KWADRACIK
 		for (int n = 0; n < 3; n++) {
 			for (int m = 6; m < 9; m++) {
 				if (table[n][m] == value) duplicate = true;
 			}
 		}
 	}
-	if (letter< 6 && letter>2 && number< 3) {												//4 KWADRACIK
+	if (letter< 6 && letter>2 && number< 3) {											//4 KWADRACIK
 		for (int n = 3; n < 6; n++) {
 			for (int m = 0; m < 3; m++) {
 				if (table[n][m] == value) duplicate = true;
 			}
 		}
 	}
-	if (letter< 6 && letter>2 && number< 6 && number>2) {												//5 KWADRACIK
+	if (letter< 6 && letter>2 && number< 6 && number>2) {								//5 KWADRACIK
 		for (int n = 3; n < 6; n++) {
 			for (int m = 3; m < 6; m++) {
 				if (table[n][m] == value) duplicate = true;
 			}
 		}
 	}
-	if (letter< 6 && letter>2 && number < 9 && number>5) {												//6 KWADRACIK
+	if (letter< 6 && letter>2 && number < 9 && number>5) {								//6 KWADRACIK
 		for (int n = 3; n < 6; n++) {
 			for (int m = 6; m < 9; m++) {
 				if (table[n][m] == value) duplicate = true;
 			}
 		}
 	}
-	if (letter< 9 && letter>5 && number < 3) {												//7 KWADRACIK
+	if (letter< 9 && letter>5 && number < 3) {											//7 KWADRACIK
 		for (int n = 6; n < 9; n++) {
 			for (int m = 0; m < 3; m++) {
 				if (table[n][m] == value) duplicate = true;
 			}
 		}
 	}
-	if (letter< 9 && letter>5 && number < 6 && number>2) {												//8 KWADRACIK
+	if (letter< 9 && letter>5 && number < 6 && number>2) {								//8 KWADRACIK
 		for (int n = 6; n < 9; n++) {
 			for (int m = 3; m < 6; m++) {
 				if (table[n][m] == value) duplicate = true;
 			}
 		}
-	}if (letter< 9 && letter>5 && number< 9 && number>5) {												//9 KWADRACIK
+	}if (letter< 9 && letter>5 && number< 9 && number>5) {								//9 KWADRACIK
 		for (int n = 6; n < 9; n++) {
 			for (int m = 6; m < 9; m++) {
 				if (table[n][m] == value) duplicate = true;
@@ -163,13 +163,18 @@ int checking_values(int size, int table[][9], bool &duplicate, int value, int le
 	}
 	return 0;
 }
-int solving_sudoku(int size, int sudoku[][9]) {
-	int workingspace[9][9];
+int transfer_data_from_tab_to_tab(int size, int tab1[][9], int tab2[][9]) {
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 9; j++) {
-			workingspace[i][j] = sudoku[i][j];
+			tab1[i][j] = tab2[i][j];
 		}
 	}
+	return 0;
+}
+int solving_sudoku(int size, int sudoku[][9]) {
+	
+	int workingspace[9][9];
+	transfer_data_from_tab_to_tab(9, workingspace, sudoku);
 	bool gettingback = false;
 	bool change = false;
 	int testvalue = 0;
@@ -218,11 +223,7 @@ int solving_sudoku(int size, int sudoku[][9]) {
 			} while (change == true);
 		}
 	}
-	for (int i = 0; i < 9; i++) {
-		for (int j = 0; j < 9; j++) {
-			sudoku[i][j] = workingspace[i][j];
-		}
-	}
+	transfer_data_from_tab_to_tab(9, sudoku, workingspace);
 	return 0;
 }
 int main()
