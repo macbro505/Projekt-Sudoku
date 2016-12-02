@@ -34,48 +34,50 @@ int present_sudoku(int size, int table[][9]) {
 int getting_data(int size, int sudoku[][9]) {
 	bool duplicate = false;
 	std::string coords;
-	bool checkv = false;
+	bool check_value = false;
 	std::string decision;
-	int check = 0;
+	int check_coords = 0;
 	int value = 0;
 	int letter;
 	int number;
 	do {
 		do {
-			check = 0;
+			check_coords = 0;
 			std::cout << std::endl << "Podaj duza litere i numer komorki, zatwierdz, klikajac enter" << std::endl;
 			std::cin >> coords;
 			if (coords[0] >= 'A' && coords[0] <= 'I') {
-				check++;
+				check_coords++;
 			}
 			else {
 				system("CLS");
+				present_sudoku(9, sudoku);
 				std::cout << "Wpisz poprawnie nazwe komorki, ktora zaczyna sie od duzej litery od A do I" << std::endl;
 			}
 			if (coords[1] >= '0' && coords[1] <= '9') {
-				check++;
+				check_coords++;
 			}
 			else {
 				system("CLS");
+				present_sudoku(9, sudoku);
 				std::cout << "Wpisz poprawnie nazwe komorki, ktora konczy sie cyfra od 1 do 9" << std::endl;
 			}
-		} while (check != 2);
+		} while (check_coords != 2);
 		letter = (coords[0] - 'A');
 		number = (coords[1] - '1');
 		do {
 			duplicate = false;
-			checkv = false;
+			check_value = false;
 			std::cout << "Wpisz wartosc komorki, lub wpisz 0 jesli chcesz wykasowac zawartosc komorki, zatwierdz, kikajac enter" << std::endl;
 			std::cin >> value;
 			if (value >= 0 && value <= 9) {
-				checkv = true;
+				check_value = true;
 			}
 			else {
 				std::cout << "Wpisz wartosc od 1 do 9, lub 0 jesli chcesz wykasowac wartosc" << std::endl;
 			}
 			checking_values(9, sudoku, duplicate, value, letter, number);
 			if (duplicate == true) std::cout << "Wpisana wartosc zostala juz wpisana w innym miejscu i koliduje z wczesniej wpisana" << std::endl << "Prosze wybrac inna wartosc" << std::endl;
-		} while (checkv == false || duplicate == true);
+		} while (check_value == false || duplicate == true);
 		system("CLS");
 		sudoku[coords[0] - 'A'][coords[1] - '1'] = value;
 		do {
