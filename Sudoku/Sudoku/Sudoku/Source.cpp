@@ -81,7 +81,7 @@ int getting_data(int size, int sudoku[][9]) {
 			if (duplicate == true) std::cout << "Wpisana wartosc zostala juz wpisana w innym miejscu i koliduje z wczesniej wpisana" << std::endl << "Prosze wybrac inna wartosc" << std::endl;
 		} while (check_value == false || duplicate == true);
 		system("CLS");
-		sudoku[coords[0] - 'A'][coords[1] - '1'] = value;
+		sudoku[letter][number] = value;
 		do {
 			present_sudoku(9, sudoku);
 			std::cout << "Czy chcesz wpisac koleja wartosc?" << std::endl << "Jesli tak wpisz 1, jesli nie wpisz 0, zatwierdz klikajac enter" << std::endl;
