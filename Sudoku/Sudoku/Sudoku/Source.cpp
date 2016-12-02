@@ -96,10 +96,10 @@ int getting_data(int size, int sudoku[][9]) {
 }
 int checking_values(int size, int table[][9], bool &duplicate, int value, int letter, int number) {
 	for (int h = 0; h < 9; h++) {
-		if (table[h][number] == value) duplicate = true;								//KOLUMNA
+		if (table[h][number] == value) duplicate = true;								//WIERSZ
 	}
 	for (int h = 0; h < 9; h++) {
-		if (table[letter][h] == value) duplicate = true;								//WIERSZ
+		if (table[letter][h] == value) duplicate = true;								//KOLUMNA
 	}
 	if (letter < 3 && number < 3) {														//1 KWADRACIK
 		for (int n = 0; n < 3; n++) {
